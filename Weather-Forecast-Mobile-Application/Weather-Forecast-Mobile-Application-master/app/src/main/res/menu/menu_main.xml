@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.akashungarala.hw06.MainActivity">
+    <item
+        android:id="@+id/add_city"
+        android:orderInCategory="100"
+        android:title="Add City"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/clear_save"
+        android:orderInCategory="100"
+        android:title="Clear Saved City"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/view_notes"
+        android:orderInCategory="100"
+        android:title="View Notes"
+        app:showAsAction="never" />
+</menu>

@@ -1,0 +1,141 @@
+<style>
+    section { border:1px solid white; padding:10px; overflow:hidden; }
+    section > section { float:left; }
+    .indent-1 { padding-left:120px; }
+    
+</style>
+
+<body text ="white" bgcolor = '#000000'>
+    <section>
+    <!-- Section 1 --> 
+        <section>
+          <h1>&emsp;&emsp;&emsp;&emsp; Filament Queue: &emsp;&emsp;&emsp;&emsp;</h1>
+
+          <canvas id="myFCanvas" width="295" height="200" style="border:1px solid #FFFFFF;">
+          </canvas>
+
+        </section>
+
+    <!-- Section 2 -->
+        <section>
+          <h1>&emsp;&emsp;&emsp;&emsp;&emsp; Resin Queue: &emsp;&emsp;&emsp;&emsp;&emsp;</h1>
+
+          <canvas id="myRCanvas" width="295" height="200" style="border:1px solid #FFFFFF;">
+          </canvas>
+
+        </section>
+
+    </section>  
+    <script type="text/javascript">
+
+        var fQueue = ["demo model 1", "demo model 2"];
+        var rQueue = ["demo model 1", "demo model 2"];
+
+
+        
+        var fCanvas = document.getElementById('myFCanvas');
+        var ctx = fCanvas.getContext('2d');
+        ctx.font = "15px Georgia";
+        ctx.fillStyle = "#FFFFFF";
+       
+        var depth = 20;
+        var queueItem;
+        var i;
+        var j;
+        
+        for(i = 0; i < fQueue.length; i++)
+        {
+            queueItem = fQueue[i];
+            ctx.fillText(queueItem, 10, depth);
+            depth += 20;
+           
+        }
+        
+        var rCanvas = document.getElementById('myRCanvas');
+        var ctx2 = rCanvas.getContext('2d');
+        ctx2.font = "15px Georgia";
+        ctx2.fillStyle = "#FFFFFF";
+
+        var depth2 = 20;
+        var queueItem2;
+        
+        for(j = 0; j < rQueue.length; j++)
+        {
+            queueItem2 = rQueue[j];
+            ctx2.fillText(queueItem2, 10, depth2);
+            depth2 += 20;
+           
+        }
+        
+        var name, date, time;
+
+        function addF(modelNameF, modelDateF, modelTimeF)
+        {
+            name = modelNameF;
+            date = modelDateF;
+            time = modelTimeF;
+            
+            fQueue.push(name);
+                       
+            ctx.fillText(name, 10, depth);
+            depth+=20;
+        }
+
+        function addR(modelNameR, modelDateR, modelTimeR)
+        {
+            name = modelNameR;
+            date = modelDateR;
+            time = modelTimeR;
+            
+            rQueue.push(name);
+                       
+            ctx2.fillText(name, 10, depth2);
+            depth2+=20;
+
+        } 
+    </script>
+
+    <section class="indent-3">
+        <!-- Section 1 --> 
+        <section>
+          <h1>&emsp;&emsp;&emsp; Add Filament Model: &emsp;&emsp;&emsp;</h1>
+
+          Model Name:&emsp;&emsp; <input type="text" name="modelNameF" id="modelNameF"/> 
+          <br>
+          <br>
+          Model Deadline:&emsp;  <input type="text" name="modelDateF" id="modelDateF"/>
+          <br> 
+          <br>
+          Model Time:&emsp;&emsp;&ensp; <input type="text" name="modelTimeF" id="modelTimeF"/>
+          <br>
+          <br>
+          &emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 
+          <input id="addF" type="button" value="Okay" 
+                 onclick="addF(document.getElementById('modelNameF').value, 
+                             document.getElementById('modelDateF').value, 
+                             document.getElementById('modelTimeF').value)"/>
+
+         </section>
+
+        <!-- Section 2 -->
+        <section>
+          <h1>&emsp;&emsp;&emsp;&emsp; Add Resin Model: &emsp;&emsp;&emsp;&emsp;</h1>
+
+          Model Name:&emsp;&emsp; <input type="text" name="modelNameR" id="modelNameR"/> 
+            <br>
+            <br>
+          Model Deadline:&emsp; <input type="text" name="modelDateR" id="modelDateR"/>
+          <br>
+          <br>
+          Model Time:&emsp;&emsp;&ensp; <input type="text" name="modelTimeR" id="modelTimeR"/>
+          <br>
+          <br>
+          &emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 
+          <input id="addR" type="button" value="Okay" 
+                 onclick="addR(document.getElementById('modelNameR').value, 
+                             document.getElementById('modelDateR').value, 
+                             document.getElementById('modelTimeR').value)"/>              
+        </section>
+
+    </section>  
+</body>

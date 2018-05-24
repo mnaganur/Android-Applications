@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Customer Log in</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <link rel="stylesheet" type="text/css" href="font-awesome.css"/>
+    </head>
+    <body>
+        <h1 align="center" style="color:white">Order Placement</h1> <br> 
+        
+        <div class="container1">
+            <img src="images/3DLogo.png"/> <br> <br>
+            <form>
+                <div class="form-input">
+                    <input type="text" name="customerName" placeholder="Customer Full name">
+                </div>
+                
+                <div class="form-input">
+                    <input type="text" name="email" placeholder="Customer Email ID">
+                </div>
+                
+                <div class="form-input">
+                    <textarea rows="6" cols="50" placeholder="Order Description"></textarea> 
+                </div>
+                
+                <div class="form-input">
+                    <input type="date" name="orderDate" placeholder="Order Date">
+                </div>
+                
+                <div class="form-input">
+                    <input type="number" name="quantity" min="1" max="10" placeholder="Total Copies">
+                </div>
+                
+                <div class="form-input">
+                    <input type="file" name="orderFile" placeholder="Choose file">
+                </div>
+                
+                <input type="submit" name="submit" value="Place Order" class="btn-login">
+            </form> <br>
+        </div>
+    </body>
+</html>
+
+
+

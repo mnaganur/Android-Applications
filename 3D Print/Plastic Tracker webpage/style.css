@@ -1,0 +1,8 @@
+
+#contentBox {
+    margin: 0 auto;
+    width: 100%;
+}
+.column-left{ float: left; margin: 0; width: 50%; }
+.column-right{ float: right; margin: 0; width: 50%; }
+

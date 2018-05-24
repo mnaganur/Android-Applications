@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+
+        <title>Plastic Tracker</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            canvas { border: 1px solid white; }
+        </style>
+    </head>
+    <body text = "white" bgcolor = '#000000' onload="drawResin(); drawFilament();">
+        <div>
+            <div id="contentBox">
+                <div class="column-left">
+                    <header>Filament Reserves</header>
+                    <canvas id="filament" width="50" height="450"></canvas>
+                </div>
+                <div class="column-right">
+                    <header>Resin Reserves</header>
+                    <canvas id="resin" width="600" height="450"></canvas>
+                </div>
+                </div>
+         </div>
+        
+        <script type="text/javascript">
+            //vars to store resin amounts
+                var whiteR = 100;
+                var blueR = 100;
+                var greyR = 100;
+                
+            //vars to store Filament amounts
+                var redF = 100;
+                var oraF = 100;
+                var yelF = 100;
+                var greF = 100;
+                var bluF = 100;
+                var blkF = 100;
+                
+            //functions to update resin amounts
+            function demoR(colorR, volR){
+                var vol = parseInt(volR);
+                if (colorR === "white"){
+                whiteR -= vol;
+                whiteR = Math.min(Math.max(whiteR, 0)), 100;}
+                if (colorR === "blue"){
+                blueR -= vol;
+                blueR = Math.min(Math.max(blueR, 0)), 100;}
+                if (colorR === "grey"){
+                greyR -= vol;
+                greyR = Math.min(Math.max(greyR, 0)), 100;}
+                drawResin();
+            }
+            function demoaR(colorR,volR){
+                var vol = parseInt(volR);
+                if (colorR === "white"){
+                whiteR += vol;
+                if(whiteR>100){whiteR=100;}}
+                if (colorR === "blue"){
+                blueR += vol;
+                if(blueR>100){blueR=100;}}
+                if (colorR === "grey"){
+                greyR += vol;
+                if(greyR>100){greyR=100;}}
+                drawResin();
+            }
+            
+            //functions to update filament amounts
+            function demoF(colorF,volF){
+                var vol2 = parseInt(volF);
+                if (colorF === "red"){
+                redF -= vol2;
+                if(redF <=0){redF=0;}}
+                if (colorF === "orange"){
+                oraF -= vol2;
+                if(oraF <=0){oraF=0;}}
+                if (colorF === "yellow"){
+                yelF -= vol2;
+                if(yelF <=0){yelF=0;}}
+                if (colorF === "green"){
+                greF -= vol2;
+                if(greF <=0){greF=0;}}             
+                if (colorF === "blue"){
+                bluF -= vol2;
+                if(bluF <=0){bluF=0;}}
+                if (colorF === "black"){
+                blkF -= vol2;
+                if(blkF <=0){blkF=0;}}
+                drawFilament();
+            }
+            function demoaF(colorF,volF){
+                var vol2 = parseInt(volF);
+                if (colorF === "red"){
+                redF += vol2;
+                if(redF >100){redF=100;}}
+                if (colorF === "orange"){
+                oraF += vol2;
+                if(oraF >100){oraF=100;}}
+                if (colorF === "yellow"){
+                yelF += vol2;
+                if(yelF >100){yelF=100;}}
+                if (colorF === "green"){
+                greF += vol2;
+                if(greF >100){greF=100;}}             
+                if (colorF === "blue"){
+                bluF += vol2;
+                if(bluF >100){bluF=100;}}
+                if (colorF === "black"){
+                blkF += vol2;
+                if(blkF >100){blkF=100;}}
+                drawFilament();
+            }
+            
+            //draw labels for filament spools
+            var canvas1 = document.getElementById('filament');
+            var ctx = canvas1.getContext('2d');
+                ctx.canvas.width  = window.innerWidth/9*4;
+                ctx.canvas.height = window.innerHeight/9*7;
+                
+            //upper/lower center Y-val
+            var uC = (canvas1.height/5)*4;
+            var lC = (canvas1.height/5)*1.5;
+            //L/M/R center X-val
+            var lX = (canvas1.width/15)*3;
+            var mX = (canvas1.width/15)*7.5;
+            var rX = (canvas1.width/15)*12;
+           
+                ctx.font="16px Georgia";
+                ctx.fillStyle = "#ffffff";
+                ctx.fillText(" red filament",lX/2,lC/5);
+                ctx.fillText(" orange filament",mX-lX/2,lC/5);
+                ctx.fillText(" yellow filament",rX-lX/2,lC/5);
+                ctx.fillText(" green filament",lX/2,uC/1.3);
+                ctx.fillText(" blue filament",mX-lX/2,uC/1.3);
+                ctx.fillText(" black filament",rX-lX/2,uC/1.3);
+            
+            //draw filament spools
+            function drawFilament() {
+                ctx.fillStyle = "black";
+                ctx.fillRect(115, 105, 360, 30);
+                //spool borders
+                ctx.strokeStyle = "#ffffff";
+                ctx.beginPath();
+                ctx.arc(lX,uC,mX/4+1,0,2*Math.PI, false);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(mX,uC,mX/4+1,0,2*Math.PI, false);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(rX,uC,mX/4+1,0,2*Math.PI, false);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(lX,lC,mX/4+1,0,2*Math.PI, false);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(mX,lC,mX/4+1,0,2*Math.PI, false);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(rX,lC,mX/4+1,0,2*Math.PI, false);
+                ctx.stroke();ctx.fillStyle = "#000000";
+                ctx.beginPath();
+                ctx.arc(lX,uC,mX/4,0,2*Math.PI, false);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(mX,uC,mX/4,0,2*Math.PI, false);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(rX,uC,mX/4,0,2*Math.PI, false);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(lX,lC,mX/4,0,2*Math.PI, false);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(mX,lC,mX/4,0,2*Math.PI, false);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(rX,lC,mX/4,0,2*Math.PI, false);
+                ctx.fill();
+          
+                //dynamically sized spools
+                ctx.fillStyle = 'green';
+                ctx.beginPath();
+                ctx.arc(lX,uC,mX/4*(greF*.01),0,2*Math.PI, false);
+                ctx.fill();
+                ctx.fillStyle = 'blue';
+                ctx.beginPath();
+                ctx.arc(mX,uC,mX/4*(bluF*.01),0,2*Math.PI, false);
+                ctx.fill();
+                ctx.fillStyle = '#262626';
+                ctx.beginPath();
+                ctx.arc(rX,uC,mX/4*(blkF*.01),0,2*Math.PI, false);
+                ctx.fill();
+                ctx.fillStyle = 'red';
+                ctx.beginPath();
+                ctx.arc(lX,lC,mX/4*(redF*.01),0,2*Math.PI, false);
+                ctx.fill();
+                ctx.fillStyle = 'orange';
+                ctx.beginPath();
+                ctx.arc(mX,lC,mX/4*(oraF*.01),0,2*Math.PI, false);
+                ctx.fill();
+                ctx.fillStyle = '#e6e600';
+                ctx.beginPath();
+                ctx.arc(rX,lC,mX/4*(yelF*.01),0,2*Math.PI, false);
+                ctx.fill();
+
+                //spool cores=====================================
+                ctx.fillStyle = 'white';
+                ctx.beginPath();
+                ctx.arc(lX,uC,mX/30,0,2*Math.PI, false);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(mX,uC,mX/30,0,2*Math.PI, false);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(rX,uC,mX/30,0,2*Math.PI, false);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(lX,lC,mX/30,0,2*Math.PI, false);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(mX,lC,mX/30,0,2*Math.PI, false);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(rX,lC,mX/30,0,2*Math.PI, false);
+                ctx.fill();
+                            //generate warning if low resin
+                if (redF<=0 || oraF <=0 || yelF <=0 ||greF <=0 || bluF <=0 || blkF<=0){
+                    ctx.font="16px Georgia";
+                    ctx.fillStyle = "#cc0099";
+                    ctx.fillRect(115, 105, 360, 30);
+                    ctx.fillStyle = "#000000";
+                    ctx.fillText(" Insufficient filament: print will fail!",120,120);
+                }
+            }
+            
+            
+            //function to render filament levels dynamically
+            //draw labels for resin tanks
+            var canvas2 = document.getElementById('resin');
+            var ctx2 = canvas2.getContext('2d');
+                ctx2.canvas.width  = window.innerWidth/9*4;
+                ctx2.canvas.height = window.innerHeight/9*7;
+                ctx2.font="16px Georgia";
+                ctx2.fillStyle = "#ffffff";
+                ctx2.fillText(" white resin",lX/2,lC/5);
+                ctx2.fillText(" blue resin",mX-lX/2,lC/5);
+                ctx2.fillText(" grey resin",rX-lX/2,lC/5);
+                
+            //function to render resin levels dynamically
+            function drawResin() {
+
+                //White Resin Gradient
+                ctx2.fillStyle = "#000000";
+                ctx2.fillRect(115, 105, 360, 30);
+                var grd_white = ctx.createLinearGradient(50,200,75,0);
+                grd_white.addColorStop(0,"white");
+                grd_white.addColorStop(1,"white");
+                //Blue Resin Gradient
+                var grd_blue = ctx.createLinearGradient(50,200,75,0);
+                grd_blue.addColorStop(0,"SlateBlue");
+                grd_blue.addColorStop(1,"white");
+                //Grey Resin Gradient
+                var grd_grey = ctx.createLinearGradient(50,200,75,0);
+                grd_grey.addColorStop(0,"grey");
+                grd_grey.addColorStop(1,"white");
+                
+                //resin tank visualizations
+                //fill with gradient to height based on amount of resin available
+                ctx2.fillStyle = "#white";
+                ctx2.fillRect(lX/2-1, lC/4, lX+1, lC*3);
+                ctx2.fillRect(mX-lX/2-1, lC/4, (lX)+1, lC*3);
+                ctx2.fillRect(rX-lX/2-1, lC/4, lX+1, lC*3);
+                ctx2.fillStyle = "#black";
+                ctx2.fillRect(lX/2, lC/4+1, lX+2, lC*3+1);
+                ctx2.fillRect(mX-lX/2, lC/4+1, (lX)+2, lC*3+1);
+                ctx2.fillRect(rX-lX/2, lC/4+1, lX+2, lC*3+1);
+                
+                ctx2.fillStyle = grd_white;
+                ctx2.fillRect(lX/2,(lC/4)+(lC*3)-((lC*3)*whiteR*.01),(lX), lC*3*whiteR*.01);
+                
+                ctx2.fillStyle = grd_blue;
+                ctx2.fillRect(mX-lX/2,(lC/4)+(lC*3)-((lC*3)*((Math.min(Math.max(blueR, 0), 100))*.01)),(lX), lC*3*((Math.min(Math.max(blueR, 0)), 100)*.01));
+                
+                ctx2.fillStyle = grd_grey;
+                ctx2.fillRect(rX-lX/2,(lC/4)+(lC*3)-((lC*3)*((Math.min(Math.max(greyR, 0), 100))*.01)),(lX), lC*3*((Math.min(Math.max(greyR, 0)), 100)*.01));
+                ctx2.fillStyle = "#000000";
+                ctx2.fillRect(0, lC*3, 12000, 12000);
+                
+                //generate warning if low resin
+                if (greyR<=0 || blueR <=0 || whiteR <=0){
+                    ctx2.font="16px Georgia";
+                    ctx2.fillStyle = "#cc0099";
+                    ctx2.fillRect(115, 105, 360, 30);
+                    ctx2.fillStyle = "#000000";
+                    ctx2.fillText(" Insufficient resin: print will fail!",120,120);
+                }
+            }
+        </script>
+        
+        <footer>
+            Demo Controls<br><br>
+            Filament Order: Color  <input type="text" name="colorF" id="colorF"/> 
+                            Volume  <input type="number" name="volF" id="volF"/>
+                            <input id="demoaF" type="button" value="add" onclick="demoaF(document.getElementById('colorF').value, document.getElementById('volF').value)"/>
+                            <input id="demoF" type="button" value="remove" onclick="demoF(document.getElementById('colorF').value, document.getElementById('volF').value)"/>
+                            
+            <br>
+            Resin Order:    Color  <input type="text" name="colorR" id="colorR"/> 
+                            Volume  <input type="number" name="volR" id="volR"/>
+                            <input id="demoaR" type="button" value="add" onclick="demoaR(document.getElementById('colorR').value, document.getElementById('volR').value)"/>
+                            <input id="demoR" type="button" value="remove" onclick="demoR(document.getElementById('colorR').value, document.getElementById('volR').value)"/>
+            <br>
+        </footer>
+    </body>
+</html>

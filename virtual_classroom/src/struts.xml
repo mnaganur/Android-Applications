@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	<package name="test" namespace="/" extends="struts-default">
+
+		<action name="login" class="com.Action.LoginAction" method="execute">
+			<result name="s">/StudentHome.jsp</result>
+			<result name="F">/FacultyHome.jsp</result>
+			<result name="a">/AdminHome.jsp</result>
+			<result name="fail">/LoginFail.jsp</result>
+			<result name="input">/Login.jsp</result>
+		</action>
+
+		<action name="logout" class="com.Action.LoginAction" method="logout">
+			<result name="success">/Login.jsp</result>
+		</action>
+
+		<action name="StudentRegister">
+			<result>/StudentRegister.jsp</result>
+			
+		</action>
+
+		<action name="FacultyRegister">
+			<result>/FacultyRegister.jsp</result>
+		</action>
+
+		<action name="stud_reg" class="com.Action.StudentAction"
+			method="addStudent">
+			<result name="success">/RegisterSuccess.jsp</result>
+			<result name="input">/StudentRegister.jsp</result>
+			<result name="admin">/AdminHome.jsp</result>
+		</action>
+
+		<action name="facregister" class="com.Action.FacultyAction"
+			method="addFaculty">
+			<result name="success">/RegisterSuccess.jsp</result>
+			<result name="fail">/facFail.jsp</result>
+			<result name="input">/FacultyRegister.jsp</result>
+			<result name="admin">/AdminHome.jsp</result>
+		</action>
+		<action name="DeleteStudent" class="com.Action.StudentAction"
+			method="deleteStudent">
+			<result name="success">/AdminHome.jsp</result>
+			<result name="fail">/Error.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+
+		<action name="DeleteFaculty" class="com.Action.FacultyAction"
+			method="deleteFaculty">
+			<result name="success">/AdminHome.jsp</result>
+			<result name="fail">/Error.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+
+		<!-- <action name="login" class="com.Action.LoginAction" method="verifyLogin"> 
+			<result name="success">/404.jsp</result> </action> -->
+
+		<action name="ViewProfile" class="com.Action.StudentAction"
+			method="viewProfile">
+			<result name="login">/Login.jsp</result>
+			<result name="success">/StudentProfile.jsp</result>
+		</action>
+
+		<action name="viewProfile1" class="com.Action.FacultyAction"
+			method="viewFaculty">
+			<result name="success">/FacultyProfile.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+
+		<action name="es" class="com.Action.StudentAction" method="execute">
+			<result name="success">/EditStudent.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+
+		<action name="edit" class="com.Action.FacultyAction" method="executefaculty">
+			<result name="success">/EditFaculty.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+
+		<action name="edits" class="com.Action.StudentAction" method="editS">
+			<result name="success">/StudentProfile.jsp</result>
+			<result name="login">/Login.jsp</result>
+			<result name="input">/EditStudent.jsp</result>
+			
+		</action>
+
+		<action name="editfaculty" class="com.Action.FacultyAction"
+			method="updateFaculty">
+			<result name="success">/FacultyProfile.jsp</result>
+			<result name="login">/Login.jsp</result>
+			<result name="input">/EditFaculty.jsp</result>
+		</action>
+
+		<action name="a" class="com.Action.QuestionAction" method="executeView">
+			<result name="success">/QList.jsp</result>
+			<result name="login">/Login.jsp</result>
+			<!-- <result name="failure">/AskQuestion.jsp</result> -->
+		</action>
+
+		<action name="que" class="com.Action.QuestionAction" method="execute">
+			<result name="success">/QList.jsp</result>
+			<result name="login">/Login.jsp</result>
+			<result name="input">/QList.jsp</result>
+			<!-- <result name="failure">/AskQuestion.jsp</result> -->
+		</action>
+
+		<action name="ans" class="com.Action.AnswerAction" method="execute">
+			<result name="success">/QASuccess.jsp</result>
+			<result name="failure">/AnswerQ.jsp</result>
+			<result name="login">/Login.jsp</result>
+			<result name="input">/QASuccess.jsp</result>
+		</action>
+
+		<action name="view" class="com.Action.AnswerAction" method="viewAnswer">
+			<result name="success">/QASuccess.jsp</result>
+			<result name="login">/Login.jsp</result>
+			<!-- <result name="failure">/AnswerQ.jsp</result> -->
+		</action>
+
+		<action name="back" class="com.Action.QuestionAction" method="executeView">
+			<result name="success">/QList.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+
+		<action name="upload" class="com.Action.UploadMaterialAction">
+			<result name="success">/FacultyUploadSuccess.jsp</result>
+			<result name="fail">/FacultyUploadFail.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+
+		<action name="delete" class="com.Action.DeleteMaterialAction">
+			<result name="success">/FacultyDeleteSuccess.jsp</result>
+			<result name="fail">/FacultyDeleteFail.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+
+		<action name="uploadAdmin" class="com.Action.UploadMaterialAction">
+			<result name="success">/AdminUploadSuccess.jsp</result>
+			<result name="fail">/AdminUploadFail.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+
+		<action name="deleteAdmin" class="com.Action.DeleteMaterialAction">
+			<result name="success">/AdminDeleteSuccess.jsp</result>
+			<result name="fail">/AdminDeleteFail.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+
+		<action name="materials1" class="com.Action.GetClassAction"
+			method="selectMethods">
+			<result name="success">/UploadMaterial.jsp</result>
+		</action>
+		<action name="materials2" class="com.Action.DeleteMaterialAction"
+			method="delete">
+			<result name="success">/DeleteMaterial.jsp</result>
+			<result name="fail">/Error.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+
+		<action name="materials3" class="com.Action.ViewMaterialAction">
+			<result name="success">/ListOfFiles.jsp</result>
+			<result name="fail">/Error.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+
+		<action name="uploadAdminMaterial" class="com.Action.GetClassAction"
+			method="selectMethods">
+			<result name="success">/AdminUpload.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+		<action name="deleteAdminMaterial" class="com.Action.DeleteMaterialAction"
+			method="delete">
+			<result name="success">/AdminDelete.jsp</result>
+			<result name="fail">/AdminDeleteFail.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+		<action name="backfhome" class="com.Action.FacultyAction"
+			method="viewFaculty">
+			<result name="success">/FacultyHome.jsp</result>
+		</action>
+		<action name="backshome" class="com.Action.StudentAction"
+			method="viewProfile">
+			<result name="success">/StudentHome.jsp</result>
+		</action>
+
+		<action name="viewfacList" class="com.Action.FacultyAction"
+			method="viewFacultyList">
+			<result name="success">/facultyList.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+		<action name="viewstuList" class="com.Action.StudentAction"
+			method="viewStudentList">
+			<result name="success">/studentList.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+		<action name="viewfile" class="com.Action.FilesAction"
+			method="execute">
+			<result name="success">/pdf.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+		
+		<action name="StudentAdd" class="com.Action.StudentAction" method="whetherLogin">
+			<result name="success">/StudentRegister.jsp</result>
+			<result name="fail">/Login.jsp</result>
+		</action>
+		
+		<action name="FacultyAdd" class="com.Action.StudentAction" method="whetherLogin">
+			<result name="success">/FacultyRegister.jsp</result>
+			<result name="fail">/Login.jsp</result>
+		</action>
+		
+			<action name="add_stud" class="com.Action.StudentAction"
+			method="addStudent">
+			<result name="success">/AdminHome.jsp</result>
+			<result name="input">/StudentRegister.jsp</result>
+		</action>
+		
+		<action name="home" class="com.Action.LoginAction" method="goHome">
+			<result name="F">/FacultyHome.jsp</result>
+			<result name="s">/StudentHome.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 1, 2015 3:26:11 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.bean.Faculty" table="FACULTY">
+        <id name="facultyID" type="int">
+            <column name="FACULTYID" />
+            <generator class="sequence">
+            <param name="property">faculty_ID</param></generator>
+        </id>
+        <property name="userName" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="desiredPassword" type="java.lang.String">
+            <column name="DESIREDPASSWORD" />
+        </property>
+        <property name="classroomID" type="java.lang.String">
+            <column name="CLASSROOMID" />
+        </property>
+        <property name="emailID" type="java.lang.String">
+            <column name="EMAILID" />
+        </property>
+        <property name="phoneNO" type="java.lang.String">
+            <column name="PHONENO" />
+        </property>
+       <one-to-one name="login" class="com.bean.Login" cascade="save-update"></one-to-one> 
+    </class>
+</hibernate-mapping>

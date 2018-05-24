@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  <!DOCTYPE xwork PUBLIC
+	"-//OpenSymphony Group//XWork 2.1.3//EN"
+	"http://www.opensymphony.com/xwork/xwork-2.1.3.dtd"> -->
+ 
+ <!DOCTYPE validators PUBLIC 
+"-//OpenSymphony Group//XWork Validator 1.0.2//EN"
+"http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+        
+<validators>
+  <field name="userName">
+		<field-validator type="requiredstring">
+			<message>
+				 Name is required.</message>
+		</field-validator>
+		 <field-validator type="regex">
+            <param name="expression"> ^([A-Za-z\s]+)$</param>
+             <message> Name must be only characters!</message>  
+        </field-validator>
+		 <field-validator type="stringlength" short-circuit="true">  
+        <param name="minLength">1</param>  
+        <param name="maxLength">20</param>  
+            <message> Name must be less than 20 characters!</message>  
+        </field-validator> 
+	</field>
+	
+	
+	  <field name="desiredPassword">
+        <field-validator type="requiredstring">
+            <message>You must enter password</message>
+        </field-validator>
+    </field>
+    
+   <field name="classroomID">
+		<field-validator type="fieldexpression">
+		<param name="expression">classroomID neq "--select--"</param>
+			<message>Select the classroomID</message>
+		</field-validator>
+	</field>  
+<!-- <field name="facultyID">
+        <field-validator type="requiredstring">
+            <message>You must enter facultyID</message>
+        </field-validator>
+    </field>     -->
+    
+  <field name="phoneNO">
+ 	 	<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>phone Number is mandatory</message>
+		</field-validator>
+		<field-validator type="regex">
+			<param name="expression" >[9,7,8][0-9,0-9,0-9,0-9,0-9,0-9,0-9,0-9,0-9]{9}</param>
+			<message>phone Number must be numeric of 10 digits and starts with 9 or 8 or
+				7</message>
+		</field-validator>  
+	</field> 
+	 
+	<field name="emailID">
+		  <field-validator type="requiredstring">
+			<message>Enter email id</message>
+		  </field-validator>
+    
+		  <field-validator type="email">
+			<message>Enter valid email id</message>
+		  </field-validator>
+     </field> 
+     </validators>
+       
+       
+       

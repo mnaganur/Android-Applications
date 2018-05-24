@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="">
+  <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+  <property name="hibernate.connection.password">tcshyd</property>
+  <property name="hibernate.connection.url">jdbc:oracle:thin:@172.25.192.71:1521:javadb</property>
+  <property name="hibernate.connection.username">HJA67ORAUSER1D</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+  <property name="hibernate.show_sql">true</property>
+  <!-- <property name="hibernate.hbm2ddl.auto">create</property> -->
+  <property name="hibernate.hbm2ddl.auto">update</property>
+  <mapping class="com.bean.Student" resource="Student.hbm.xml"/>
+  <mapping class="com.bean.Login" resource="Login.hbm.xml"/>
+  <mapping class="com.bean.Faculty" resource="Faculty.hbm.xml"/>
+  <mapping class="com.bean.Question" resource="Question.hbm.xml"/>
+  <mapping class="com.bean.Answer" resource="Answer.hbm.xml"/>
+ </session-factory>
+</hibernate-configuration>
